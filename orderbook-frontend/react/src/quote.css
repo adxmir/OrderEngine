@@ -1,0 +1,40 @@
+.table-container{
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    max-width: 220px;
+}
+
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+table{
+    padding:10px;
+    border-collapse: collapse;
+     width: 15%;   
+    font-family: Arial, sans-serif;
+}
+
+th , td{
+    border: 1px solid white;   
+    padding: 4px 8px;
+    text-align: center;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  border-left: 2px dotted black; 
+
+}
+
+button{
+    padding:5px;
+    margin-right:5px;
+}
+
+input{
+    padding: 5px;
+    margin-right: 5px;
+    
+}
