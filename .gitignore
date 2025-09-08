@@ -1,41 +1,74 @@
-# Prerequisites
-*.d
+# =======================
+# C++ / OrderEngine
+# =======================
 
-# Compiled Object files
-*.slo
-*.lo
+# Build directories
+/build/
+/CMakeFiles/
+
+# CMake intermediate files
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
+
+# Object files
 *.o
 *.obj
+*.lo
+*.slo
 
-# Precompiled Headers
+# Precompiled headers
 *.gch
 *.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
 
 # Executables
 *.exe
 *.out
 *.app
 
-# debug information files
+# Libraries
+*.a
+*.lib
+*.lai
+*.la
+*.so
+*.dylib
+*.dll
+
+# Debug / linker / misc
+*.ilk
+*.pdb
 *.dwo
+*.d
+
+# =======================
+# React / Node
+# =======================
+
+# Node modules
+/node_modules/
+
+# Build / production folders
+/dist/
+/build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =======================
+# IDE / OS
+# =======================
+
+# VS Code workspace settings
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store

@@ -1,3 +1,0 @@
-/Users/alidemir/Documents/PersonalProjects/OrderEngine/orderBookEngine/build/CMakeFiles/MyProject.dir
-/Users/alidemir/Documents/PersonalProjects/OrderEngine/orderBookEngine/build/CMakeFiles/edit_cache.dir
-/Users/alidemir/Documents/PersonalProjects/OrderEngine/orderBookEngine/build/CMakeFiles/rebuild_cache.dir
