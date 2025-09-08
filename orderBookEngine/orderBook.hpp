@@ -9,7 +9,9 @@
 #include <nlohmann/json.hpp>
 #include <chrono>
 #include <thread>
+#include "orderBookAggregator.hpp"
 
+class Aggregator; 
 
 enum struct orderType {BUY, SELL};
 
@@ -69,6 +71,9 @@ class orderBook{
     orderBook(int minPrice_, int maxPrice_, int tickSize_,std::atomic<bool>& running);
     ~orderBook();
 
+    std::vector<std::list<order>> getBids()const {return bids;};
+    std::vector<std::list<order>> getAsks()const {return asks;};
+
     void insertIntoBook(int orderId, orderType orderType, int price, int volume);
     void addOrder(orderType orderType, int price, int volume);
     void matchBuyOrder(int price, int& volume);
@@ -93,11 +98,12 @@ class orderBook{
     std::thread timerThread;
     std::atomic<bool>& running;
     mutable std::mutex bookMutex;
+    Aggregator* bookAggregator;
 
     void updateHighest();
     void updateLowest();
-    int priceToIndex(int price);
-    int indexToPrice(int index);
+    int priceToIndex(int price){return (price - minPrice) / tickSize;};
+    int indexToPrice(int index){return (index * tickSize) + minPrice;};
 };
 
 #endif

@@ -120,23 +120,6 @@ bool orderBook::validPrice(int price){
         return price >= minPrice && price <= maxPrice ? true : false;
     }
 
-std::string orderBook::displayData(){
-    std::string data;
-    data += "Bids : \n";
-    for(int i = 0; i < bids.size(); i++){
-        for(auto& b : bids[i]){
-            data += b;
-        }
-    }
-    data += "Asks : \n";
-    for(int i = 0; i < asks.size(); i++){
-        for(auto& b : asks[i]){
-            data += b;
-        }
-    }
-    return data;
-}
-
 void orderBook::addWebOrder(nlohmann::json& orderData){
     try{
         int price = orderData["price"];
@@ -161,22 +144,9 @@ void orderBook::addWebOrder(nlohmann::json& orderData){
 
 std::string orderBook::toJson() const {
     std::lock_guard<std::mutex> lock(bookMutex);
-    nlohmann::json j;
-    j["type"] = "OrderBook Snapshot";
-    j["bids"] = nlohmann::json::array();
-    for(const auto& orderList : bids){
-        for(const auto& o : orderList){
-            j["bids"].push_back({{"order_id", o.getOrderId()}, {"price", o.getPrice()}, {"volume", o.getVolume()}});
-        }
-    }
-    j["asks"] = nlohmann::json::array();
-    for(const auto& orderList : asks){
-        for(const auto& o : orderList){
-            j["asks"].push_back({{"order_id", o.getOrderId()}, {"price", o.getPrice()}, {"volume", o.getVolume()}});
-        }
-    }
-    j["snapshot_time"] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-    return j.dump();
+    std::cout << " succesful to json ran \n";
+    return (*bookAggregator).aggregateBook(*this);
+
 }   
 
 void orderBook::changeTimer(){
@@ -213,14 +183,6 @@ void orderBook::updateLowest(){
         }
     }
     lowestPriceInd = -1;
-}
-
-int orderBook::priceToIndex(int price){
-    return (price - minPrice) / tickSize;
-}
-
-int orderBook::indexToPrice(int index){
-    return (index * tickSize) + minPrice;
 }
 
 orderBook::~orderBook(){

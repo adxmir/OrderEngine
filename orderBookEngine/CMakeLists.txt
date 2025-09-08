@@ -22,6 +22,7 @@ add_executable(MyProject
     Servers/serverBoost.cpp
     order-producer.cpp
     new-order-consumer.cpp
+    orderBookAggregator.cpp
 )
 
 target_link_libraries(MyProject PRIVATE rdkafka++ rdkafka)

@@ -2,20 +2,11 @@ import React from 'react'
 import './quote.css'
 
 export default function LevelTwoQuotes({asks = [] ,bids = []}){
-    const aggregateOrders = (orders) =>{
-        const agg = {};
-        orders.forEach(order =>{
-            if(agg[order.price]){
-                agg[order.price] += order.volume;
-            }
-            else{
-                agg[order.price] = order.volume;
-            }
-        }); 
-        return Object.entries(agg).map(([price, volume]) => ({ price: Number(price), volume }));
+    const prepareOrders = (orders) =>{
+        return Object.entries(orders).map(([price, volume]) => ({ price: Number(price), volume }));
     };
-    const readyBids = aggregateOrders(bids).sort((a,b) => b.price - a.price);
-    const readyAsks = aggregateOrders(asks).sort((a, b) => a.price - b.price);
+    const readyBids = bids;
+    const readyAsks = asks;
     const maxL = Math.max(readyBids.length, readyAsks.length);
     return(
         <div>

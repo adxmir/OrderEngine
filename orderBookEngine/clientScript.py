@@ -2,8 +2,8 @@ import asyncio
 import argparse
 import random
 
-
-#python3 clientScript.py --host 127.0.0.1 --port 8080 --clients 50 --duration 10
+#Python script to test tcp server against concurrent connections and requests : format : 
+#python3 clientScript.py --host 127.0.0.1 --port 9000--clients {n_clients} --duration {seconds}
 
 async def client_task(client_id, host, port, duration,counter):
     try:
@@ -41,7 +41,7 @@ async def main(host ,port, clients, duration):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="TCP Load Tester")
     parser.add_argument("--host", default="0.0.0.0", help="Server host")
-    parser.add_argument("--port", type=int, default=8080, help="Server port")
+    parser.add_argument("--port", type=int, default=9000, help="Server port")
     parser.add_argument("--clients", type=int, default=100, help="Number of concurrent clients")
     parser.add_argument("--duration", type=int, default=5, help="Seconds each client stays connected")
     args = parser.parse_args()

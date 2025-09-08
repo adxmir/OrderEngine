@@ -1,0 +1,8 @@
+{
+    "cmake.sourceDirectory": "/Users/alidemir/Documents/PersonalProjects/OrderEngine/orderBookEngine",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "files.associations": {
+        "list": "cpp",
+        "vector": "cpp"
+    }
+}

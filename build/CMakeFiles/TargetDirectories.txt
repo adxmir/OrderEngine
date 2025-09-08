@@ -1,0 +1,3 @@
+/Users/alidemir/Documents/PersonalProjects/OrderEngine/build/CMakeFiles/MyProject.dir
+/Users/alidemir/Documents/PersonalProjects/OrderEngine/build/CMakeFiles/edit_cache.dir
+/Users/alidemir/Documents/PersonalProjects/OrderEngine/build/CMakeFiles/rebuild_cache.dir
