@@ -2,9 +2,6 @@ import React from 'react'
 import './quote.css'
 
 export default function LevelTwoQuotes({asks = [] ,bids = []}){
-    const prepareOrders = (orders) =>{
-        return Object.entries(orders).map(([price, volume]) => ({ price: Number(price), volume }));
-    };
     const readyBids = bids;
     const readyAsks = asks;
     const maxL = Math.max(readyBids.length, readyAsks.length);
