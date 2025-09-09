@@ -8,11 +8,8 @@ if(POLICY CMP0167)
     cmake_policy(SET CMP0167 OLD)
 endif()
 
-find_package(Boost 1.74 REQUIRED COMPONENTS system)
-
 find_package(nlohmann_json 3.2.0 REQUIRED)
 
-set(CMAKE_OSX_ARCHITECTURES arm64)
 include_directories(/opt/homebrew/include)
 link_directories(/opt/homebrew/lib)
 set(RDKAFKA_LIBRARIES rdkafka++ rdkafka)
@@ -23,25 +20,18 @@ add_executable(MyProject
     Servers/server.cpp
     orderBook.cpp
     message.cpp
-    Servers/serverBoost.cpp
     order-producer.cpp
     new-order-consumer.cpp
     orderBookAggregator.cpp
 )
 
-if(NOT RDKAFKA_LIBRARIES)
-    message(FATAL_ERROR "librdkafka++ not found! Install via Homebrew (macOS) or apt (Linux).")
-endif()
-
 target_include_directories(MyProject PRIVATE
-    ${Boost_INCLUDE_DIRS}
     ${RDKAFKA_INCLUDE_DIRS}
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(MyProject PRIVATE 
     ${RDKAFKA_LIBRARIES}
-    Boost::system 
     nlohmann_json::nlohmann_json 
 )
 
