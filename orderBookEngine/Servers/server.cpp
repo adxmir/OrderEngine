@@ -143,8 +143,12 @@ std::string Server::processEvent(const std::string& message){
         return "Invalid price \n";
     }
     {
+        Latency::timer time;
+        time.startTimer();
         std::lock_guard<std::mutex> lock(bookMutex);
         book.addOrder(t, parser.getPrice(), parser.getVolume());
+        std::cout << time.endTimer() << "\n";
+
     }
     std::string response = "Order fufilled \n";
     return response;
