@@ -2,6 +2,7 @@
 #include "Servers/server.hpp"
 #include "message.hpp"
 #include "new-order-consumer.hpp"
+#include "timer.hpp"
 #include "Servers/serverBoost.hpp"
 
 #include <signal.h>
@@ -10,6 +11,7 @@ using namespace std;
 
 
 int main() {   
+    Latency::timer t;
     std::string host = "0.0.0.0";
     int port = 9000;
     std::atomic<bool> running{true};

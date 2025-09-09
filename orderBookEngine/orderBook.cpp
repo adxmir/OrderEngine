@@ -144,7 +144,6 @@ void orderBook::addWebOrder(nlohmann::json& orderData){
 
 std::string orderBook::toJson() const {
     std::lock_guard<std::mutex> lock(bookMutex);
-    std::cout << " succesful to json ran \n";
     return (*bookAggregator).aggregateBook(*this);
 
 }   

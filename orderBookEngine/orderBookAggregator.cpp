@@ -14,7 +14,6 @@ std::string Aggregator::aggregateBook(const orderBook& book) const{
         j["asks"].push_back({{"price", p.first} , {"volume" , p.second}});
     }
     j["snapshot_time"] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-    std::cout << "j is dumped \n";
     return j.dump();
 }
 
