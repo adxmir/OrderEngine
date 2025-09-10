@@ -10,6 +10,7 @@ export function ShowBook(){
     const [volumeInput, setVolumeInput] = useState('');
     const [priceInput, setPriceInput] = useState('');
     const [orderCounter, setOrderCount] = useState(0);
+    const[orderResult, setResult] = useState("");
     
     useEffect(() => { 
     console.log('truing');
@@ -30,19 +31,32 @@ export function ShowBook(){
 
     const placeOrder = (side) => {
         if (readyState !== WebSocket.OPEN) return;
+        if(priceInput.trim() == "" || volumeInput.trim() == ""){
+            setResult("Price or volume not declared");
+            clearResultMessage();
+            return;
+        }
+        const price_ = Number(priceInput);
+        const volume_ = Number(volumeInput);
         const order = {
         action: 'placeOrder',
         type : side,
-        price: Number(priceInput),
-        volume: Number(volumeInput)
+        price: price_,
+        volume: volume_
         };
         sendMessage(JSON.stringify(order));
         setPriceInput('');
         setVolumeInput(''); 
+        setResult("Order succesfully carried out at price {" + price_ + "} volume {" + volume_ + "}");
+        clearResultMessage();
     };
     
     function handleSubmit(e){
         e.preventDefault();
+    }
+
+    function clearResultMessage(){
+        setTimeout( ()  => setResult(""), 3000);
     }
 
     return(
@@ -67,6 +81,9 @@ export function ShowBook(){
                 <button type="buyButton" onClick={() => placeOrder('BUY')}>Buy</button>
                 <button type="sellButton" onClick={() => placeOrder('SELL')}>Sell</button>
             </form>
+            <label> {orderCounter} </label>
+            <br/>
+            <label> {orderResult} </label>
         </div>
     );
 }
